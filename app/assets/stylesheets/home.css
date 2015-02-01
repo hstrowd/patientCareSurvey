@@ -75,5 +75,9 @@
 }
 #thank-you .msg {
     display: inline-block;
+    max-width: 95%;
     vertical-align: middle;
+}
+#thank-you .msg img {
+    max-width: 100%;
 }

@@ -136,7 +136,11 @@ body {
 #page-body form.survey .rating label {
     width: 100%;
 }
-#page-body form.survey .rating .response {
+#page-body form.survey .rating .response.check,
+#page-body form.survey .rating .response.radio {
+    display: none;
+}
+#page-body form.survey .rating .response.drop-down {
     width: 90%;
     margin: 0 auto;
     text-align: center;
@@ -144,6 +148,7 @@ body {
 #page-body form.survey .question .response .option {
     display: inline-block;
     margin: 0 2%;
+    text-align: center;
 }
 #page-body form.survey .question .response .option input {
     display: inline-block;
@@ -162,10 +167,15 @@ body {
 }
 #page-body form.survey .actions input,
 #page-body form.survey .actions button {
+    /* Clear webkit styling to ensure proper rendering on iOS devices. */ 
+    -webkit-appearance:none;  
+
     width: 10%;
     min-width: 10em;
+
     margin: 1%;
     padding: 2%;
+    padding-top: 10px;
     
     border: .1em solid #888888;
     border-radius: .5em;
@@ -190,6 +200,34 @@ body {
 #page-body form.survey .actions button.cancel:hover {
     background-color: #FD8F8F;
 }
+
+@media screen and (min-width: 575px)  {
+    /* Replace drop-down select field with radio buttons. */
+    #page-body form.survey .rating .response.drop-down {
+    }
+    #page-body form.survey .rating .response.drop-down {
+        display: none;
+    }
+    #page-body form.survey .rating .response.radio,
+    #page-body form.survey .rating .response.check {
+        display: block;
+        width: 94%;
+        text-align: center;
+    }
+    #page-body form.survey .question .response.check .option label,
+    #page-body form.survey .question .response.radio .option label {
+        display: block;
+    }
+}
+@media screen and (min-width: 800px)  {
+    /* Move the label next to the radio buttons. */
+    #page-body form.survey .question .response .option label {
+        display: inline-block;
+    }
+}
+
+
+
 
 /**
  *  Footer
