@@ -1,0 +1,46 @@
+<%= form_tag(new_patient_work_path, id: 'work-details', class: :survey) do %>
+  <div class="title">Please answer the following about your life:</div>
+
+  <div class="question was-working">
+    <%= label_tag(:was_working, 'Were you working prior to the diagnosis of your tumor?') %>
+    <div class="response">
+      <%= select_tag(:was_working, options_for_select([ ['Select one...', :select],
+                                                        ['Full Time', :full],
+                                                        ['Part Time', :part],
+                                                        ['No',  :none] ])) %>
+    </div>
+  </div>
+
+  <div class="question is-working">
+    <%= label_tag(:is_working, 'Are you currently working?') %>
+    <div class="response">
+      <%= select_tag(:is_working, options_for_select([ ['Select one...', :select],
+                                                       ['Full Time', :full],
+                                                       ['Part Time', :part],
+                                                       ['No',  :none] ])) %>
+    </div>
+  </div>
+
+  <div class="question max-schooling">
+    <%= label_tag(:max_schooling, 'What is the highest schooling you completed?') %>
+    <div class="response">
+      <%= select_tag(:max_schooling, options_for_select([ ['Select one...', :select],
+                                                          ['Doctoral Degree', :doc],
+                                                          ['Master\'s Degree', :master],
+                                                          ['Bachelor\'s Degree', :bachelor],
+                                                          ['Associate Degree', :associate],
+                                                          ['Occupational/Vocational Degree', :vocational],
+                                                          ['High School Graduate', :high_school],
+                                                          ['None of the Above', :none] ])) %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= button_tag("Cancel", 
+                   onClick: 'window.location.assign("' + root_path + '")', 
+                   type: :button, 
+                   class: :cancel) %>
+    <%= submit_tag("Next", class: :submit) %>
+  </div>
+
+<% end %>

@@ -8,7 +8,27 @@
 </head>
 <body>
 
-<%= yield %>
+  <div id="header">
+    <div class="title-bar">
+      <div class="provider-logo"><%= image_tag asset_path('wakeMed.jpg'); %></div>
+      <div class="app-title"><%= link_to 'Patient Feedback Survey', root_path %></div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+  
+  <div id="page-body">
+    <div class="gradient"><%= image_tag asset_path("gradient.png"); %></div>
+    
+    <div id="content">
+      
+      <%= yield %>
+    </div>
+  </div>
 
+  <div id="footer">
+    <div class="gradient"><%= image_tag asset_path("gradient.png"); %></div>
+    <div class="hospital-logo"><%= image_tag asset_path('baptistHealth.jpg'); %></div>
+    <div class="copyright">Copyright &copy; 2015, Roy Strowd</div>
+  </div>
 </body>
 </html>

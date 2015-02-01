@@ -1,0 +1,80 @@
+/**
+ * Place all styles related to the Home views here.
+ */
+
+
+/*  ---  Home Page  ---  */
+
+#home {
+    width: 80%;
+    height: 100%;
+    margin: 2% auto;
+
+    text-align: center;
+}
+
+#home .btn {
+    display: inline-block;
+
+    width: 30%;
+    min-width: 5em;
+    max-width: 8em;
+    height: 20%;
+
+    margin: 3%;
+    padding: 3%;
+
+    border: .1em solid #888888;
+    border-radius: .5em;
+
+    color: #555555;
+    font-size: 2em;
+    font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic, "AppleGothic", sans-serif;
+    text-align: center;
+}
+#home .btn:hover {
+    color: #000000;
+    border: .1em solid #444444;
+}
+#home .btn.new {
+    background-color: #FFE2B5;
+}
+#home .btn.new:hover {
+    background-color: #FFDBA2;
+}
+#home .btn.returning {
+    background-color: #D6E6FF;
+}
+#home .btn.returning:hover {
+    background-color: #BCDBFF;
+}
+
+#home .btn .label {
+    display: inline-block;
+
+    width: 90%;
+    
+    vertical-align: middle;
+}
+
+
+
+/*  ---  Thank You Page  ---  */
+
+#thank-you {
+    width: 40%;
+    height: 7em;
+
+    margin: 2em auto;
+    text-align: center;
+
+    background-color: #A9FFAD;
+    border: .2em solid #888888;
+    border-radius: .7em;
+
+    font-size: 1.2em;
+}
+#thank-you .msg {
+    display: inline-block;
+    vertical-align: middle;
+}

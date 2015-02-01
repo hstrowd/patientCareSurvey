@@ -1,0 +1,14 @@
+<div id="thank-you">
+  <div class="centerer"></div>
+  <div class="msg">
+    <%= image_tag asset_path("thankYou/thankYou.png"); %>
+    <div class="intro">Your response has been recorded.</div>
+  </div>
+</div>
+
+<!-- Return to home page after 10 seconds. -->
+<script>
+  $(document).ready(function() {
+    window.patientCare.autoRedirect('<%= root_path %>', 10000);
+  });
+</script>

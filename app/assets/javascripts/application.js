@@ -14,3 +14,18 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+
+window.patientCare = {
+    autoRedirect: function(path, delayMilliseconds) {
+        var callback = function() {
+            window.location.assign(path)
+        };
+
+        if(window.setTimeout && window.setTimeout instanceof Function) {
+            window.setTimeout(callback, delayMilliseconds);
+        } else {
+            callback();
+        }
+    }
+}

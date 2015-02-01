@@ -1,0 +1,114 @@
+<%= form_tag(new_patient_health_path, id: 'health-details', class: :survey) do %>
+  <div class="title">Please answer the following about your health:</div>
+
+  <div class="intro">
+    Have you suffered the following in the past week:
+  </div>
+
+  <div class="question headache">
+    <%= label_tag(:headache, 'Headache:') %>
+    <div class="response">
+      <div class="option">
+        <%= radio_button_tag(:headache, :yes) %>
+        <%= label_tag(:headache_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= radio_button_tag(:headache, :no) %>
+        <%= label_tag(:headache_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question weakness">
+    <%= label_tag(:weakness, 'Weakness:') %>
+    <div class="response">
+      <div class="option">
+        <%= radio_button_tag(:weakness, :yes) %>
+        <%= label_tag(:weakness_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= radio_button_tag(:weakness, :no) %>
+        <%= label_tag(:weakness_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question speech-problems">
+    <%= label_tag(:speech_problems, 'Problems with Speech:') %>
+    <div class="response">
+      <div class="option">
+        <%= radio_button_tag(:speech_problems, :yes) %>
+        <%= label_tag(:speech_problems_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= radio_button_tag(:speech_problems, :no) %>
+        <%= label_tag(:speech_problems_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question memory-problems">
+    <%= label_tag(:memory_problems, 'Problems with Memory:') %>
+    <div class="response">
+      <div class="option">
+        <%= radio_button_tag(:memory_problems, :yes) %>
+        <%= label_tag(:memory_problems_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= radio_button_tag(:memory_problems, :no) %>
+        <%= label_tag(:memory_problems_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question anxiousness">
+    <%= label_tag(:anxiousness, 'Anxiousness:') %>
+    <div class="response">
+      <div class="option">
+        <%= radio_button_tag(:anxiousness, :yes) %>
+        <%= label_tag(:anxiousness_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= radio_button_tag(:anxiousness, :no) %>
+        <%= label_tag(:anxiousness_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question concentration-problems">
+    <%= label_tag(:concentration_problems, 'Trouble Concentrating:') %>
+    <div class="response">
+      <div class="option">
+        <%= radio_button_tag(:concentration_problems, :yes) %>
+        <%= label_tag(:concentration_problems_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= radio_button_tag(:concentration_problems, :no) %>
+        <%= label_tag(:concentration_problems_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question sleep-problems">
+    <%= label_tag(:sleep_problems, 'Trouble Sleeping:') %>
+    <div class="response">
+      <div class="option">
+        <%= radio_button_tag(:sleep_problems, :yes) %>
+        <%= label_tag(:sleep_problems_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= radio_button_tag(:sleep_problems, :no) %>
+        <%= label_tag(:sleep_problems_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= button_tag("Cancel", 
+                   onClick: 'window.location.assign("' + root_path + '")', 
+                   type: :button, 
+                   class: :cancel) %>
+    <%= submit_tag("Next", class: :submit) %>
+  </div>
+
+<% end %>

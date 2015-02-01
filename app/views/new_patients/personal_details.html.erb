@@ -1,0 +1,59 @@
+<%= form_tag(new_patient_personal_path, id: 'personal-details', class: :survey) do %>
+  <div class="title">Please answer the following:</div>
+
+  <div class="question name">
+    <%= label_tag(:full_name, 'What is your first and last name?') %>
+    <div class="response">
+      <%= text_field_tag(:first_name, '', placeholder: 'First Name') %>
+      <%= text_field_tag(:last_name, '', placeholder: 'Last Name') %>
+    </div>
+  </div>
+
+  <div class="question birth-date">
+    <%= label_tag(:birth_date, 'What is your date of birth?') %>
+    <div class="response">
+      <%= date_field_tag(:birth_date) %>
+      <!-- TODO: Find a better date field. -->
+    </div>
+  </div>
+
+  <div class="question gender">
+    <%= label_tag(:gender, 'What is your gender?') %>
+    <div class="response">
+      <%= select_tag(:gender, options_for_select([ ['Select one...', :select],
+                                                   ['Male',:male],
+                                                   ['Female',:femail],
+                                                   ['Unspecified',:unspecified] ])) %>
+    </div>
+  </div>
+
+  <div class="question race">
+    <%= label_tag(:race, 'What is your race/ethnicity?') %>
+    <div class="response">
+      <%= select_tag(:gender, options_for_select([ ['Select one...', :select],
+                                                   ['American Indian or Alaska Native',:i],
+                                                   ['Asian',:a],
+                                                   ['Hispanic, Latino, or Spanish Origin',:l],
+                                                   ['Black or African American',:b],
+                                                   ['Native Hawaiian or Other Pacific Islander',:h],
+                                                   ['White',:w],
+                                                   ['Other',:o] ])) %>
+    </div>
+  </div>
+
+  <div class="question diagnosis">
+    <%= label_tag(:diagnosis, 'What is your diagnosis?') %>
+    <div class="response">
+      <%= text_area_tag(:diagnosis, '') %>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= button_tag("Cancel", 
+                   onClick: 'window.location.assign("' + root_path + '")', 
+                   type: :button, 
+                   class: :cancel) %>
+    <%= submit_tag("Next", class: :submit) %>
+  </div>
+
+<% end %>

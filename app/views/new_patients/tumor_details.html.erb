@@ -1,0 +1,78 @@
+<%= form_tag(new_patient_tumor_path, id: 'tumor-details', class: :survey) do %>
+  <div class="title">Please answer the following about your tumor:</div>
+
+  <div class="question surgery">
+    <%= label_tag(:has_had_surgery, 'Have you undergone surgery for your tumor?') %>
+    <div class="response">
+      <%= select_tag(:has_had_surgery, options_for_select([ ['Select one...', :select],
+                                                            ['Yes', :true],
+                                                            ['No',  :false] ])) %>
+    </div>
+  </div>
+
+  <div class="question radiation">
+    <%= label_tag(:has_had_radiation, 'Have you undergone radiation for your tumor?') %>
+    <div class="response">
+      <%= select_tag(:has_had_radiation, options_for_select([ ['Select one...', :select],
+                                                              ['Yes', :true],
+                                                              ['No',  :false] ])) %>
+    </div>
+  </div>
+
+  <div class="question chemo">
+    <%= label_tag(:has_had_chemo, 'Have you undergone chemotherapy for your tumor?') %>
+    <div class="response">
+      <%= select_tag(:has_had_chemo, options_for_select([ ['Select one...', :select],
+                                                          ['Yes', :true],
+                                                          ['No',  :false] ])) %>
+    </div>
+  </div>
+
+  <div class="question chemo-type">
+    <%= label_tag(:chemo_type, 'If so, what:') %>
+    <div class="response">
+      <%= text_field_tag(:chemo_type) %>
+      <!-- TODO: Should this be a textarea -->
+    </div>
+  </div>
+
+  <div class="question seizure">
+    <%= label_tag(:has_had_seizure, 'Have you ever had a seizure?') %>
+    <div class="response">
+      <%= select_tag(:has_had_seizure, options_for_select([ ['Select one...', :select],
+                                                            ['Yes', :true],
+                                                            ['No',  :false] ])) %>
+    </div>
+  </div>
+
+  <div class="question seizure-count">
+    <%= label_tag(:seizure_count, 'How many seizures have you had in the past one month?') %>
+    <div class="response">
+      <%= select_tag(:seizure_count, options_for_select([ ['Select one...', :select],
+                                                          ['Yes', :true],
+                                                          ['No',  :false] ])) %>
+    </div>
+  </div>
+
+  <div class="question steroid-dose">
+    <%= label_tag(:steroid_dose, 'What is your current dose of steroids (dexamethasone)?') %>
+    <div class="response">
+      <div class="dose">
+        <%= text_field_tag(:steroid_dose) %> mg
+      </div>
+      <div class="unknown">
+        <%= check_box_tag(:unknown_steroid_dose) %> 
+        <%= label_tag(:unknown_steroid_dose, 'N/A') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= button_tag("Cancel", 
+                   onClick: 'window.location.assign("' + root_path + '")', 
+                   type: :button, 
+                   class: :cancel) %>
+    <%= submit_tag("Next", class: :submit) %>
+  </div>
+
+<% end %>
