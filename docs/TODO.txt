@@ -1,0 +1,15 @@
+TODOs:
+===============
+
+ - Figure our color scheme.
+ - Add support for a back button.
+ - Set name and DoB as required fields.
+ - Add validation for DoB field.
+ - Create data model.
+ - Persist new patient info.
+ - Implemente returning patient record lookup.
+ - persist returning patient info.
+ - Update steroid dose "N/A" field to disable the number field.
+ - Add timeout check to all pages.
+ - Add admin UI.
+ - Add support for viewing from an iPhone.
