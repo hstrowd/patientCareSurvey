@@ -1,0 +1,42 @@
+/**
+ * Place all styles related to the Returning Patient views here.
+ */
+
+
+
+/*  --- Personal Details Page ---  */
+
+form#returning-personal-details .question.steroid-dose .response .dose {
+    display: inline-block;
+}
+form#returning-personal-details .question.steroid-dose .response .unknown {
+    display: inline-block;
+    margin-left: 1em;
+}
+form#returning-personal-details .question.steroid-dose .response .dose input {
+    width: 4em;
+}
+form#returning-personal-details .question.steroid-dose .response .unkown input {
+    display: inline-block;
+}
+form#returning-personal-details .question.steroid-dose .response .unknown label {
+    display: inline-block;
+    width: initial;
+    min-width: 0;
+}
+
+
+
+/*  --- Health Details Page ---  */
+
+#page-body form#returning-health-details .question {
+    width: 70%;
+    min-width: 30em;
+    margin: 0 auto;
+}
+#page-body form#returning-health-details .question>label {
+    min-width: 12em;
+}
+#page-body form#returning-health-details .question .response {
+    min-width: 12em;
+}

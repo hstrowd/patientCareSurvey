@@ -1,8 +1,50 @@
-<%= form_tag(new_patient_life_path, id: 'new-life-details', class: :survey) do %>
-  <div class="title">Please answer the following about your life:</div>
+<%= form_tag(returning_patient_personal_path, id: 'returning-personal-details', class: :survey) do %>
+  <div class="title">Please answer the following:</div>
 
-  <div class="intro">
-    Please rate your response to the following based on how you feel today:
+  <div class="question name">
+    <%= label_tag(:full_name, 'What is your first and last name?') %>
+    <div class="response">
+      <%= text_field_tag(:first_name, '', placeholder: 'First Name') %>
+      <%= text_field_tag(:last_name, '', placeholder: 'Last Name') %>
+    </div>
+  </div>
+
+  <div class="question birth-date">
+    <%= label_tag(:birth_date, 'What is your date of birth?') %>
+    <div class="response">
+      <%= date_field_tag(:birth_date) %>
+      <!-- TODO: Find a better date field. -->
+    </div>
+  </div>
+
+  <div class="question seizure-count">
+    <%= label_tag(:seizure_count, 'How many seizures have you had in the past one month?') %>
+    <div class="response">
+      <%= number_field_tag(:seizure_count, nil, min: 0) %>
+    </div>
+  </div>
+
+  <div class="question steroid-dose">
+    <%= label_tag(:steroid_dose, 'What is your current dose of steroids (dexamethasone)?') %>
+    <div class="response">
+      <div class="dose">
+        <%= number_field_tag(:steroid_dose, nil, min: 0) %> mg
+      </div>
+      <div class="unknown">
+        <%= check_box_tag(:unknown_steroid_dose) %> 
+        <%= label_tag(:unknown_steroid_dose, 'N/A') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question is-working">
+    <%= label_tag(:is_working, 'Are you currently working?') %>
+    <div class="response">
+      <%= select_tag(:is_working, options_for_select([ ['Select one...', :select],
+                                                       ['Full Time', :full],
+                                                       ['Part Time', :part],
+                                                       ['No',  :none] ])) %>
+    </div>
   </div>
 
   <div class="question rating depressed">
@@ -109,19 +151,6 @@
     </div>
   </div>
 
-  <div class="question max-schooling">
-    <%= label_tag(:max_schooling, 'What is the highest schooling you completed?') %>
-    <div class="response">
-      <%= select_tag(:max_schooling, options_for_select([ ['Select one...', :select],
-                                                          ['Doctoral Degree', :doc],
-                                                          ['Master\'s Degree', :master],
-                                                          ['Bachelor\'s Degree', :bachelor],
-                                                          ['Associate Degree', :associate],
-                                                          ['Occupational/Vocational Degree', :vocational],
-                                                          ['High School Graduate', :high_school],
-                                                          ['None of the Above', :none] ])) %>
-    </div>
-  </div>
 
   <div class="actions">
     <%= button_tag("Cancel", 

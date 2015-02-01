@@ -1,4 +1,4 @@
-<%= form_tag(new_patient_tumor_path, id: 'tumor-details', class: :survey) do %>
+<%= form_tag(new_patient_tumor_path, id: 'new-tumor-details', class: :survey) do %>
   <div class="title">Please answer the following about your tumor:</div>
 
   <div class="question surgery">
@@ -48,9 +48,7 @@
   <div class="question seizure-count">
     <%= label_tag(:seizure_count, 'How many seizures have you had in the past one month?') %>
     <div class="response">
-      <%= select_tag(:seizure_count, options_for_select([ ['Select one...', :select],
-                                                          ['Yes', :true],
-                                                          ['No',  :false] ])) %>
+      <%= number_field_tag(:seizure_count, nil, min: 0) %>
     </div>
   </div>
 
@@ -58,7 +56,7 @@
     <%= label_tag(:steroid_dose, 'What is your current dose of steroids (dexamethasone)?') %>
     <div class="response">
       <div class="dose">
-        <%= text_field_tag(:steroid_dose) %> mg
+        <%= number_field_tag(:steroid_dose, nil, min: 0) %> mg
       </div>
       <div class="unknown">
         <%= check_box_tag(:unknown_steroid_dose) %> 
