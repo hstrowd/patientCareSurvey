@@ -24,7 +24,7 @@
     margin: 3%;
     padding: 3%;
 
-    border: .1em solid #888888;
+    border: .1em solid #666666;
     border-radius: .5em;
 
     color: #555555;
@@ -33,19 +33,23 @@
 }
 #home .btn:hover {
     color: #000000;
-    border: .1em solid #444444;
+    border: .1em solid #333333;
 }
 #home .btn.new {
-    background-color: #FFE2B5;
+    color: #DDDDDD;
+    background-color: #A88142;
 }
 #home .btn.new:hover {
-    background-color: #FFDBA2;
+    color: #FFFFFF;
+    background-color: #97763E;
 }
 #home .btn.returning {
-    background-color: #D6E6FF;
+    color: #CCCCCC;
+    background-color: #222222;
 }
 #home .btn.returning:hover {
-    background-color: #BCDBFF;
+    color: #FFFFFF;
+    background-color: #000000;
 }
 
 #home .btn .label {
