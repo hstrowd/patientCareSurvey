@@ -2,7 +2,7 @@
   <div class="title">Please answer the following:</div>
 
   <div class="question name">
-    <%= label_tag(:full_name, 'What is your first and last name?') %>
+    <%= label_tag(:full_name, 'What is your first and last name?', class: :required) %>
     <div class="response">
       <%= text_field_tag(:first_name, '', placeholder: 'First Name') %>
       <%= text_field_tag(:last_name, '', placeholder: 'Last Name') %>
@@ -10,7 +10,7 @@
   </div>
 
   <div class="question birth-date">
-    <%= label_tag(:birth_date, 'What is your date of birth?') %>
+    <%= label_tag(:birth_date, 'What is your date of birth?', class: :required) %>
     <div class="response">
       <%= date_field_tag(:birth_date) %>
       <!-- TODO: Find a better date field. -->

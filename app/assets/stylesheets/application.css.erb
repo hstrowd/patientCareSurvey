@@ -126,6 +126,17 @@ body {
     min-width: 20em;
     vertical-align: middle;
 }
+#page-body form.survey .question label.required::after {
+    content: "*";
+    display: inline-block;
+    
+    margin: 0 0.5em;
+    vertical-align: top;
+
+    font-size: 0.8em;
+    color: red;
+}
+
 #page-body form.survey .question .response {
     display: inline-block;
     width: 40%;

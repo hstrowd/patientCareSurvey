@@ -1,8 +1,7 @@
 TODOs:
 ===============
 
- - Add support for a back button.
- - Set name and DoB as required fields.
+ - Validate name and DoB are provided.
  - Add validation for DoB field.
  - Update steroid dose "N/A" field to disable the number field.
  - Create data model.
