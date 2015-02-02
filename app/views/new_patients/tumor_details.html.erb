@@ -66,11 +66,9 @@
   </div>
 
   <div class="actions">
-    <%= button_tag("Cancel", 
-                   onClick: 'window.location.assign("' + root_path + '")', 
-                   type: :button, 
-                   class: :cancel) %>
-    <%= submit_tag("Next", class: :submit) %>
+    <%= submit_tag("Cancel", class: :cancel) %>
+    <%= submit_tag("Back", class: :back) %>
+    <%= submit_tag("Next", class: :next) %>
   </div>
 
 <% end %>

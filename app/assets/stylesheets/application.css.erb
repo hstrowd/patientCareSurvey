@@ -165,8 +165,7 @@ body {
 
     text-align: center;
 }
-#page-body form.survey .actions input,
-#page-body form.survey .actions button {
+#page-body form.survey .actions input {
     /* Clear webkit styling to ensure proper rendering on iOS devices. */ 
     -webkit-appearance:none;  
 
@@ -175,7 +174,6 @@ body {
 
     margin: 1%;
     padding: 2%;
-    padding-top: 10px;
     
     border: .1em solid #888888;
     border-radius: .5em;
@@ -183,21 +181,26 @@ body {
     color: #444444;
     font-size: 1em;
 }
-#page-body form.survey .actions input:hover,
-#page-body form.survey .actions button:hover {
+#page-body form.survey .actions input:hover {
     border: .1em solid #444444;
     color: #000000;
 }
-#page-body form.survey .actions input.submit {
+#page-body form.survey .actions input.next {
     background-color: #C7FFC2;
 }
-#page-body form.survey .actions input.submit:hover {
+#page-body form.survey .actions input.next:hover {
     background-color: #A9FFA2;
 }
-#page-body form.survey .actions button.cancel {
+#page-body form.survey .actions input.back {
+    background-color: #DDDDDD;
+}
+#page-body form.survey .actions input.back:hover {
+    background-color: #CCCCCC;
+}
+#page-body form.survey .actions input.cancel {
     background-color: #FFAFAF;
 }
-#page-body form.survey .actions button.cancel:hover {
+#page-body form.survey .actions input.cancel:hover {
     background-color: #FD8F8F;
 }
 
