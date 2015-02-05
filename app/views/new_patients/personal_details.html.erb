@@ -23,7 +23,13 @@
       <%= select_tag(:gender, options_for_select([ ['Select one...', :select],
                                                    ['Male',:male],
                                                    ['Female',:female],
-                                                   ['Unspecified',:unspecified] ])) %>
+                                                   ['Not specified',:unspecified] ])) %>
+    </div>
+    <div class="followup">
+      <%= label_tag(:gender_other, 'If not specified:') %>
+      <div class="response">
+        <%= text_field_tag(:gender_other, '', placeholder: 'Please write in here') %>
+      </div>
     </div>
   </div>
 
@@ -37,7 +43,13 @@
                                                  ['Black or African American',:b],
                                                  ['Native Hawaiian or Other Pacific Islander',:h],
                                                  ['White',:w],
-                                                 ['Other',:o] ])) %>
+                                                 ['Other, please specify.',:o] ])) %>
+    </div>
+    <div class="followup">
+      <%= label_tag(:race_other, 'If other:') %>
+      <div class="response">
+        <%= text_field_tag(:race_other, '', placeholder: 'Please write in here') %>
+      </div>
     </div>
   </div>
 

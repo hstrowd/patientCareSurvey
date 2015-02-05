@@ -5,6 +5,16 @@
 
 /*  --- Personal Details Page ---  */
 
+form#new-personal-details .question.gender .followup label,
+form#new-personal-details .question.race .followup label {
+    width: 27%;
+    min-width: 18.5em;
+    margin-left: 3%;
+}
+form#new-personal-details .question.gender .followup .response input,
+form#new-personal-details .question.race .response .followup input {
+    width: 50%;
+}
 form#new-personal-details .question.diagnosis .response textarea {
     width: 100%;
     height: 5em;
