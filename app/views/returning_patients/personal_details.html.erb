@@ -192,8 +192,34 @@
   </div>
 
   <div class="actions">
-    <%= submit_tag("Cancel", class: :cancel) %>
-    <%= submit_tag("Next", class: :next) %>
+    <%= hidden_field_tag(:step, '', class: :action) %>
+
+    <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
+    <%= link_to("Next", '#', onClick: 'submitForm("next")', class: :next) %>
   </div>
 
 <% end %>
+
+
+<script>
+  var submitForm = function(action) {
+    var options = {};
+    if (action == 'next') {
+      options = {
+        validate: [ {
+          selector: 'input[name=first_name]',
+          required: true
+        }, {
+          selector: 'input[name=last_name]',
+          required: true
+        }, {
+          selector: 'input[name=birth_date]',
+          required: true,
+          dataType: 'date'
+        } ]
+      };
+    }
+
+    patientCare.submitForm("returning-personal-details", action, options);
+  };
+</script>

@@ -1,8 +1,7 @@
 TODOs:
 ===============
 
- - Validate name and DoB are provided.
- - Add validation for DoB field.
+ - Synchronize rating fields.
  - Update steroid dose "N/A" field to disable the number field.
  - Create data model.
  - Persist new patient info.

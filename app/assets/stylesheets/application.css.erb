@@ -147,6 +147,9 @@ body {
 #page-body form.survey .rating label {
     width: 100%;
 }
+#page-body form.survey .question .response input.invalid {
+    border: 2px inset #FF0000;
+}
 #page-body form.survey .rating .response.check,
 #page-body form.survey .rating .response.radio {
     display: none;
@@ -176,12 +179,13 @@ body {
 
     text-align: center;
 }
-#page-body form.survey .actions input {
+#page-body form.survey .actions a {
     /* Clear webkit styling to ensure proper rendering on iOS devices. */ 
     -webkit-appearance:none;  
 
+    display: inline-block;
     width: 10%;
-    min-width: 10em;
+    min-width: 6em;
 
     margin: 1%;
     padding: 2%;
@@ -191,27 +195,28 @@ body {
 
     color: #444444;
     font-size: 1em;
+    text-decoration: none;
 }
-#page-body form.survey .actions input:hover {
+#page-body form.survey .actions a:hover {
     border: .1em solid #444444;
     color: #000000;
 }
-#page-body form.survey .actions input.next {
+#page-body form.survey .actions a.next {
     background-color: #C7FFC2;
 }
-#page-body form.survey .actions input.next:hover {
+#page-body form.survey .actions a.next:hover {
     background-color: #A9FFA2;
 }
-#page-body form.survey .actions input.back {
+#page-body form.survey .actions a.back {
     background-color: #DDDDDD;
 }
-#page-body form.survey .actions input.back:hover {
+#page-body form.survey .actions a.back:hover {
     background-color: #CCCCCC;
 }
-#page-body form.survey .actions input.cancel {
+#page-body form.survey .actions a.cancel {
     background-color: #FFAFAF;
 }
-#page-body form.survey .actions input.cancel:hover {
+#page-body form.survey .actions a.cancel:hover {
     background-color: #FD8F8F;
 }
 

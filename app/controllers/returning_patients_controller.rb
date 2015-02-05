@@ -1,8 +1,8 @@
 class ReturningPatientsController < ApplicationController
   def submit_personal_details
-    if (params[:commit] == 'Cancel')
+    if (params[:step] == 'cancel')
       redirect_to root_path
-    elsif (params[:commit] == 'Back')
+    elsif (params[:step] == 'back')
       redirect_to root_path
     else
       # Default to 'Next'
@@ -11,9 +11,9 @@ class ReturningPatientsController < ApplicationController
   end
 
   def submit_health_details
-    if (params[:commit] == 'Cancel')
+    if (params[:step] == 'cancel')
       redirect_to root_path
-    elsif (params[:commit] == 'Back')
+    elsif (params[:step] == 'back')
       redirect_to returning_patient_personal_path
     else
       # Default to 'Next'

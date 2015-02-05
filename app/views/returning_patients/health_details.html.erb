@@ -104,9 +104,18 @@
   </div>
 
   <div class="actions">
-    <%= submit_tag("Cancel", class: :cancel) %>
-    <%= submit_tag("Back", class: :back) %>
-    <%= submit_tag("Complete", class: :next, commit: 'Next') %>
+    <%= hidden_field_tag(:step, '', class: :action) %>
+
+    <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
+    <%= link_to("Back", '#', onClick: 'submitForm("back")', class: :back) %>
+    <%= link_to("Complete", '#', onClick: 'submitForm("next")', class: :next) %>
   </div>
 
 <% end %>
+
+
+<script>
+  var submitForm = function(action) {
+    patientCare.submitForm("returning-health-details", action, {});
+  };
+</script>
