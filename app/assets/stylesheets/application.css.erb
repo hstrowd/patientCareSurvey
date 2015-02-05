@@ -150,7 +150,6 @@ body {
 #page-body form.survey .question .response input.invalid {
     border: 2px inset #FF0000;
 }
-#page-body form.survey .rating .response.check,
 #page-body form.survey .rating .response.radio {
     display: none;
 }
@@ -160,7 +159,6 @@ body {
     text-align: center;
 }
 #page-body form.survey .question .response .option {
-    display: inline-block;
     margin: 0 2%;
     text-align: center;
 }
@@ -223,8 +221,6 @@ body {
 @media screen and (min-width: 575px)  {
     /* Replace drop-down select field with radio buttons. */
     #page-body form.survey .rating .response.drop-down {
-    }
-    #page-body form.survey .rating .response.drop-down {
         display: none;
     }
     #page-body form.survey .rating .response.radio,
@@ -236,6 +232,9 @@ body {
     #page-body form.survey .question .response.check .option label,
     #page-body form.survey .question .response.radio .option label {
         display: block;
+    }
+    #page-body form.survey .question .response .option {
+        display: inline-block;
     }
 }
 @media screen and (min-width: 800px)  {

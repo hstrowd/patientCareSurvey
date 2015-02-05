@@ -31,9 +31,16 @@
         <%= number_field_tag(:steroid_dose, nil, min: 0) %> mg
       </div>
       <div class="unknown">
-        <%= check_box_tag(:unknown_steroid_dose) %> 
+        <%= check_box_tag(:unknown_steroid_dose) %>
         <%= label_tag(:unknown_steroid_dose, 'N/A') %>
       </div>
+      <script>
+        $(document).ready(function() {
+          patientCare.enabledControlField('returning-personal-details',
+                                          'input#unknown_steroid_dose',
+                                          'input#steroid_dose');
+        });
+      </script>
     </div>
   </div>
 
@@ -51,7 +58,7 @@
     <%= label_tag(:depressed_rating, 'In the past week, I have spent more than half of the time feeling depressed:') %>
     <%= hidden_field_tag(:depressed_rating) %>
     <div class="response drop-down">
-      <%= select_tag(:depressed_rating_select, 
+      <%= select_tag(:depressed_rating_select,
                      options_for_select([ ['Select one...', :select],
                                           ['Strongly Agree',:strong_agree],
                                           ['Agree',:agree],
@@ -81,13 +88,23 @@
         <%= label_tag(:depressed_rating_radio_strong_disagree, 'Strongly Disagree') %>
       </div>
     </div>
+    <script>
+      $(document).ready(function() {
+        patientCare.reflectField('returning-personal-details',
+                                 'input#depressed_rating',
+                                 'select#depressed_rating_select');
+        patientCare.reflectRadio('returning-personal-details',
+                                 'input#depressed_rating',
+                                 'depressed_rating_radio');
+      });
+    </script>
   </div>
 
   <div class="question rating depressed">
     <%= label_tag(:hope_rating, 'In the past week, I have spent more than half of the time feeling no hope:') %>
     <%= hidden_field_tag(:hope_rating) %>
     <div class="response drop-down">
-      <%= select_tag(:hope_rating_select, 
+      <%= select_tag(:hope_rating_select,
                      options_for_select([ ['Select one...', :select],
                                           ['Strongly Agree',:strong_agree],
                                           ['Agree',:agree],
@@ -117,13 +134,23 @@
         <%= label_tag(:hope_rating_radio_strong_disagree, 'Strongly Disagree') %>
       </div>
     </div>
+    <script>
+      $(document).ready(function() {
+        patientCare.reflectField('returning-personal-details',
+                                 'input#hope_rating',
+                                 'select#hope_rating_select');
+        patientCare.reflectRadio('returning-personal-details',
+                                 'input#hope_rating',
+                                 'hope_rating_radio');
+      });
+    </script>
   </div>
 
   <div class="question rating spiritual">
     <%= label_tag(:spiritual_rating, 'I consider myself a spiritual person:') %>
     <%= hidden_field_tag(:spiritual_rating) %>
     <div class="response drop-down">
-      <%= select_tag(:spiritual_rating_select, 
+      <%= select_tag(:spiritual_rating_select,
                      options_for_select([ ['Select one...', :select],
                                           ['Strongly Agree',:strong_agree],
                                           ['Agree',:agree],
@@ -153,20 +180,20 @@
         <%= label_tag(:spiritual_rating_radio_strong_disagree, 'Strongly Disagree') %>
       </div>
     </div>
+    <script>
+      $(document).ready(function() {
+        patientCare.reflectField('returning-personal-details',
+                                 'input#spiritual_rating',
+                                 'select#spiritual_rating_select');
+        patientCare.reflectRadio('returning-personal-details',
+                                 'input#spiritual_rating',
+                                 'spiritual_rating_radio');
+      });
+    </script>
   </div>
 
   <div class="question rating support-sources">
     <%= label_tag(:support_sources, 'I find my support from (select all that apply):') %>
-    <%= hidden_field_tag(:support_sources) %>
-    <div class="response drop-down">
-      <%= select_tag(:support_sources_select, 
-                     options_for_select([ ['Myself',:self_support],
-                                          ['Family',:family_support],
-                                          ['Friends',:friend_support],
-                                          ['Religion',:religion_support],
-                                          ['Other',:other_support] ]),
-                     multiple: true) %>
-    </div>
     <div class="response check">
       <div class="option">
         <%= check_box_tag(:self_support_check) %>

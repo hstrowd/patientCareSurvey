@@ -61,7 +61,15 @@
       <div class="unknown">
         <%= check_box_tag(:unknown_steroid_dose) %> 
         <%= label_tag(:unknown_steroid_dose, 'N/A') %>
+        <!-- TODO: Is it meaningful to track the difference between someone checking the N/A box and not answering the question at all? -->
       </div>
+      <script>
+        $(document).ready(function() {
+          patientCare.enabledControlField('new-tumor-details', 
+                                          'input#unknown_steroid_dose', 
+                                          'input#steroid_dose');
+        });
+      </script>
     </div>
   </div>
 
