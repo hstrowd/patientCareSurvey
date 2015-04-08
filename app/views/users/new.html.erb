@@ -1,0 +1,93 @@
+<!-- TODO: Figure out how to handle the case when the @user has already been saved. -->
+<%= form_for(@user, html: { id: 'new-user', class: :survey }) do |f| %>
+  <div class="title">Please answer the following:</div>
+
+  <div class="question name">
+    <%= f.label(:full_name, 'What is your first and last name?', class: :required) %>
+    <div class="response">
+      <%= f.text_field(:first_name, placeholder: 'First Name') %>
+      <%= f.text_field(:last_name, placeholder: 'Last Name') %>
+    </div>
+  </div>
+
+  <div class="question birth-date">
+    <%= f.label(:birth_date, 'What is your date of birth?', class: :required) %>
+    <div class="response">
+      <%= f.date_field(:birth_date) %>
+      <!-- TODO: Find a better date field. -->
+    </div>
+  </div>
+
+  <div class="question gender">
+    <%= f.label(:gender, 'What is your gender?') %>
+    <div class="response">
+      <%= f.select(:gender, [
+                     ['Select one...', nil],
+                     ['Male',:male],
+                     ['Female',:female],
+                     ['Not specified',:other]
+                     ]) %>
+    </div>
+    <div class="followup">
+      <%= f.label(:gender_other, 'If not specified:') %>
+      <div class="response">
+        <%= f.text_field(:gender_other, placeholder: 'Please write in here') %>
+      </div>
+    </div>
+  </div>
+
+  <!-- TODO: Figure out why ethnicity and ethnicity other are not saving. -->
+  <div class="question race">
+    <%= f.label(:ethnicity, 'What is your race/ethnicity?') %>
+    <div class="response">
+      <%= f.select(:ethnicity, [
+                     ['Select one...', nil],
+                     ['American Indian or Alaska Native',:american_indian],
+                     ['Asian',:asian],
+                     ['Hispanic, Latino, or Spanish Origin',:hispanic],
+                     ['Black or African American',:african_americas],
+                     ['Native Hawaiian or Other Pacific Islander',:pacific_islander],
+                     ['White',:white],
+                     ['Other, please specify.',:other]
+                   ]) %>
+    </div>
+    <div class="followup">
+      <%= f.label(:ethnicity_other, 'If other:') %>
+      <div class="response">
+        <%= f.text_field(:ethnicity_other, placeholder: 'Please write in here') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= hidden_field_tag(:step, '', class: :action) %>
+
+    <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
+    <%= link_to("Next", '#', onClick: 'submitForm("submit")', class: :next) %>
+  </div>
+
+<% end %>
+
+
+<script>
+  var submitForm = function(action) {
+    var options = {};
+    if (action == 'submit') {
+      options = {
+        validate: [ {
+          selector: 'input[name=first_name]',
+          required: true
+        }, {
+          selector: 'input[name=last_name]',
+          required: true
+        }, {
+          selector: 'input[name=birth_date]',
+          required: true,
+          dataType: 'date'
+        } ]
+      };
+    }
+
+    patientCare.submitForm("new-user", action, options);
+  };
+</script>

@@ -1,13 +1,5 @@
 class ReturningPatientsController < ApplicationController
   def submit_personal_details
-    if (params[:step] == 'cancel')
-      redirect_to root_path
-    elsif (params[:step] == 'back')
-      redirect_to root_path
-    else
-      # Default to 'Next'
-      redirect_to returning_patient_health_path
-    end
   end
 
   def submit_health_details

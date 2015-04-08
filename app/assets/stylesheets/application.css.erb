@@ -105,19 +105,72 @@ body {
     background-color: #F5F5F5;
 }
 
+#page-body .title {
+    margin: 1% 5%;
+    font-size: 1.2em;
+}
+
+#page-body .actions {
+    text-align: center;
+}
+#page-body .actions a {
+    /* Clear webkit styling to ensure proper rendering on iOS devices. */ 
+    -webkit-appearance:none;  
+
+    display: inline-block;
+    width: 10%;
+    min-width: 6em;
+
+    margin: 1%;
+    padding: 2%;
+    
+    border: .1em solid #888888;
+    border-radius: .5em;
+
+    color: #444444;
+    font-size: 1em;
+    text-decoration: none;
+}
+#page-body .actions a:hover {
+    border: .1em solid #444444;
+    color: #000000;
+}
+#page-body .actions a.next {
+    background-color: #C7FFC2;
+}
+#page-body .actions a.next:hover {
+    background-color: #A9FFA2;
+}
+#page-body .actions a.back {
+    background-color: #DDDDDD;
+}
+#page-body .actions a.back:hover {
+    background-color: #CCCCCC;
+}
+#page-body .actions a.cancel {
+    background-color: #FFAFAF;
+}
+#page-body .actions a.cancel:hover {
+    background-color: #FD8F8F;
+}
+
+
+/**
+ *  Survey Forms
+ */
+
 #page-body form.survey {
     width: 95%;
     max-width: 50em;
     margin: 0 auto;
 }
 
-#page-body form.survey .title {
-    margin: 1% 5%;
-    font-size: 1.2em;
-}
-
 #page-body form.survey .question {
     margin: 2% 0;
+}
+
+#page-body form.survey .question .field_with_errors {
+    display: inline-block;
 }
 
 #page-body form.survey .question label {
@@ -144,9 +197,13 @@ body {
     margin: 0 3%;
     vertical-align: middle;
 }
+#page-body form.survey .question .response .field_with_errors {
+    display: inline-block;
+}
 #page-body form.survey .rating label {
     width: 100%;
 }
+#page-body form.survey .question .response .field_with_errors input,
 #page-body form.survey .question .response input.invalid {
     border: 2px inset #FF0000;
 }
@@ -174,48 +231,6 @@ body {
 #page-body form.survey .actions {
     width: 100%;
     margin: 2% auto;
-
-    text-align: center;
-}
-#page-body form.survey .actions a {
-    /* Clear webkit styling to ensure proper rendering on iOS devices. */ 
-    -webkit-appearance:none;  
-
-    display: inline-block;
-    width: 10%;
-    min-width: 6em;
-
-    margin: 1%;
-    padding: 2%;
-    
-    border: .1em solid #888888;
-    border-radius: .5em;
-
-    color: #444444;
-    font-size: 1em;
-    text-decoration: none;
-}
-#page-body form.survey .actions a:hover {
-    border: .1em solid #444444;
-    color: #000000;
-}
-#page-body form.survey .actions a.next {
-    background-color: #C7FFC2;
-}
-#page-body form.survey .actions a.next:hover {
-    background-color: #A9FFA2;
-}
-#page-body form.survey .actions a.back {
-    background-color: #DDDDDD;
-}
-#page-body form.survey .actions a.back:hover {
-    background-color: #CCCCCC;
-}
-#page-body form.survey .actions a.cancel {
-    background-color: #FFAFAF;
-}
-#page-body form.survey .actions a.cancel:hover {
-    background-color: #FD8F8F;
 }
 
 @media screen and (min-width: 575px)  {

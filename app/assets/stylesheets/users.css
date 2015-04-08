@@ -1,0 +1,84 @@
+/**
+ * Place all styles related to the User views here.
+ */
+
+
+/*  --- New Page ---  */
+
+form#new-user .question.gender .followup label,
+form#new-user .question.race .followup label {
+    width: 27%;
+    min-width: 18.5em;
+    margin-left: 3%;
+}
+form#new-user .question.gender .followup .response input,
+form#new-user .question.race .response .followup input {
+    width: 50%;
+}
+
+
+
+/*  --- Duplicate Check Page ---  */
+
+#duplicate-user-check {
+    width: 95%;
+    max-width: 50em;
+    margin: 0 auto;
+}
+
+#duplicate-user-check .users {
+    text-align: center;
+}
+#duplicate-user-check .users .user {
+    display: inline-block;
+
+    width: 100%;
+    max-width: 23em;
+    min-width: 18em; 
+
+    margin: 0.5em;
+    
+    text-align: center;
+
+    background-color: #CBAB78;
+    border: 1px solid #666666;
+    border-radius: 0.5em;
+}
+#duplicate-user-check .users .user .selector {
+    display: inline-block;
+
+    width: 6%;
+    margin: 0;
+    padding: 2%;
+
+    text-align: center;
+    vertical-align: middle;
+}
+#duplicate-user-check .users .user .user-details {
+    display: inline-block;
+
+    width: 78%;
+    padding: 5%;
+
+    border-left: 1px dotted #222222;
+
+    text-align: left;
+    vertical-align: middle;
+}
+#duplicate-user-check .users .user .user-details .full-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0.1em 0;
+}
+#duplicate-user-check .users .user .user-details .attr .label {
+    display: inline-block;
+    min-width: 5em;
+    font-style: italic;
+}
+#duplicate-user-check .users .user .user-details .attr .value {
+    display: inline-block;
+}
+
+#duplicate-user-check form .actions a {
+    width: 20%;
+}

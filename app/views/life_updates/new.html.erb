@@ -1,4 +1,4 @@
-<%= form_tag(new_patient_life_path, id: 'new-life-details', class: :survey) do %>
+<%= form_for(@life_update, html: { id: 'new-life-update', class: :survey }) do |f| %>
   <div class="title">Please answer the following about your life:</div>
 
   <div class="intro">
@@ -6,8 +6,8 @@
   </div>
 
   <div class="question rating depressed">
-    <%= label_tag(:depressed_rating, 'In the past week, I have spent more than half of the time feeling depressed:') %>
-    <%= hidden_field_tag(:depressed_rating) %>
+    <%= f.label(:depressed_rating, 'In the past week, I have spent more than half of the time feeling depressed:') %>
+    <%= f.hidden_field(:depressed_rating) %>
     <div class="response drop-down">
       <%= select_tag(:depressed_rating_select,
                      options_for_select([ ['Select one...', :select],
@@ -41,27 +41,27 @@
     </div>
     <script>
       $(document).ready(function() {
-        patientCare.reflectField('new-life-details',
-                                 'input#depressed_rating',
+        patientCare.reflectField('new-life-update',
+                                 'input#life_update_depressed_rating',
                                  'select#depressed_rating_select');
-        patientCare.reflectRadio('new-life-details',
-                                 'input#depressed_rating',
+        patientCare.reflectRadio('new-life-update',
+                                 'input#life_update_depressed_rating',
                                  'depressed_rating_radio');
       });
     </script>
   </div>
 
-  <div class="question rating depressed">
-    <%= label_tag(:hope_rating, 'In the past week, I have spent more than half of the time feeling no hope:') %>
-    <%= hidden_field_tag(:hope_rating) %>
+  <div class="question rating hope">
+    <%= f.label(:hope_rating, 'In the past week, I have spent more than half of the time feeling no hope:') %>
+    <%= f.hidden_field(:hope_rating) %>
     <div class="response drop-down">
       <%= select_tag(:hope_rating_select,
                      options_for_select([ ['Select one...', :select],
-                                          ['Strongly Agree',:strong_agree],
-                                          ['Agree',:agree],
-                                          ['Neutral',:neutral],
-                                          ['Disagree',:disagree],
-                                          ['Strongly Disagree',:strong_disagree] ])) %>
+                                        ['Strongly Agree',:strong_agree],
+                                        ['Agree',:agree],
+                                        ['Neutral',:neutral],
+                                        ['Disagree',:disagree],
+                                        ['Strongly Disagree',:strong_disagree] ])) %>
     </div>
     <div class="response radio">
       <div class="option">
@@ -87,19 +87,20 @@
     </div>
     <script>
       $(document).ready(function() {
-        patientCare.reflectField('new-life-details',
-                                 'input#hope_rating',
+        
+        patientCare.reflectField('new-life-update',
+                                 'input#life_update_hope_rating',
                                  'select#hope_rating_select');
-        patientCare.reflectRadio('new-life-details',
-                                 'input#hope_rating',
+        patientCare.reflectRadio('new-life-update',
+                                 'input#life_update_hope_rating',
                                  'hope_rating_radio');
       });
     </script>
   </div>
 
   <div class="question rating spiritual">
-    <%= label_tag(:spiritual_rating, 'I consider myself a spiritual person:') %>
-    <%= hidden_field_tag(:spiritual_rating) %>
+    <%= f.label(:spiritual_rating, 'I consider myself a spiritual person:') %>
+    <%= f.hidden_field(:spiritual_rating) %>
     <div class="response drop-down">
       <%= select_tag(:spiritual_rating_select,
                      options_for_select([ ['Select one...', :select],
@@ -133,18 +134,18 @@
     </div>
     <script>
       $(document).ready(function() {
-        patientCare.reflectField('new-life-details',
-                                 'input#spiritual_rating',
+        patientCare.reflectField('new-life-update',
+                                 'input#life_update_spiritual_rating',
                                  'select#spiritual_rating_select');
-        patientCare.reflectRadio('new-life-details',
-                                 'input#spiritual_rating',
+        patientCare.reflectRadio('new-life-update',
+                                 'input#life_update_spiritual_rating',
                                  'spiritual_rating_radio');
       });
     </script>
   </div>
 
   <div class="question rating support-sources">
-    <%= label_tag(:support_sources, 'I find my support from (select all that apply):') %>
+    <%= f.label(:support_sources, 'I find my support from (select all that apply):') %>
     <div class="response check">
       <div class="option">
         <%= check_box_tag(:self_support_check) %>
@@ -174,7 +175,7 @@
 
     <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
     <%= link_to("Back", '#', onClick: 'submitForm("back")', class: :back) %>
-    <%= link_to("Next", '#', onClick: 'submitForm("next")', class: :next) %>
+    <%= link_to("Next", '#', onClick: 'submitForm("submit")', class: :next) %>
   </div>
 
 <% end %>
@@ -182,6 +183,6 @@
 
 <script>
   var submitForm = function(action) {
-    patientCare.submitForm("new-life-details", action, {});
+    patientCare.submitForm("new-life-update", action, {});
   };
 </script>

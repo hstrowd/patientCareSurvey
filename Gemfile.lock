@@ -1,3 +1,9 @@
+PATH
+  remote: /Users/hstrowd/Documents/personal/repos/lookup_by
+  specs:
+    lookup_by (0.10.1)
+      rails (>= 4.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -121,6 +127,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   jbuilder (~> 1.2)
   jquery-rails
+  lookup_by!
   pg
   rails (= 4.0.4)
   rails_12factor

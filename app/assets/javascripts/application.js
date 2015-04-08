@@ -69,7 +69,7 @@ window.patientCare = {
     },
     enabledControlField: function(formID, controlSelector, fieldSelector) {
         var $form = $('#' + formID);
-        if ($form.legnth) { return; }
+        if ($form.legnth == 0) { return; }
 
         var $control = $form.find(controlSelector);
         var $field = $form.find(fieldSelector);
@@ -90,7 +90,7 @@ window.patientCare = {
     //   will be updated to reflect this.
     reflectField: function(formID, baseSelector, sourceSelector) {
         var $form = $('#' + formID);
-        if ($form.legnth) { return; }
+        if ($form.legnth == 0) { return; }
 
         var $base = $form.find(baseSelector);
         var $source = $form.find(sourceSelector);
@@ -105,24 +105,24 @@ window.patientCare = {
             $base.val($source.val());
             $base.trigger('change');
         });
+
+        $base.trigger('change');
     },
     // Note: The radio is expected to be updated by the user and the base field
     //   will be updated to reflect this.
     reflectRadio: function(formID, baseFieldSelector, radioName) {
         var $form = $('#' + formID);
-        if ($form.legnth) {
-            return;
-        }
+        if ($form.legnth == 0) { return; }
 
         var $base = $form.find(baseFieldSelector);
         var $radio = $form.find('input:radio[name=' + radioName + ']');
-        if ($base.legnth || $radio.legnth) {
+        if ($base.legnth == 0 || $radio.legnth == 0) {
             return;
         }
 
         $base.change(function() {
             var $checkedOption = $radio.filter('#' + radioName + '_' + $base.val());
-            if ($checkedOption.length) { return; }
+            if ($checkedOption.length == 0) { return; }
 
             $checkedOption.attr('checked', true);
         });
@@ -130,5 +130,7 @@ window.patientCare = {
             $base.val($radio.filter(':checked').val());
             $base.trigger('change');
         });
+
+        $base.trigger('change');
     }
 }

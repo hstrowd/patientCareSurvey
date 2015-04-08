@@ -1,0 +1,121 @@
+<%= form_for(@health_update, html: { id: 'new-health-update', class: :survey }) do |f| %>
+  <div class="title">Please answer the following about your health:</div>
+
+  <div class="intro">
+    Have you suffered the following in the past week:
+  </div>
+
+  <div class="question headache">
+    <%= f.label(:headache, 'Headache') %>
+    <div class="response">
+      <div class="option">
+        <%= f.radio_button(:headache, true) %>
+        <%= f.label(:headache_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= f.radio_button(:headache, false) %>
+        <%= f.label(:headache_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question weakness">
+    <%= f.label(:weakness, 'Weakness') %>
+    <div class="response">
+      <div class="option">
+        <%= f.radio_button(:weakness, true) %>
+        <%= f.label(:weakness_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= f.radio_button(:weakness, false) %>
+        <%= f.label(:weakness_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question speech-problems">
+    <%= f.label(:speech_problems, 'Problems with Speech') %>
+    <div class="response">
+      <div class="option">
+        <%= f.radio_button(:speech_problems, :yes) %>
+        <%= f.label(:speech_problems_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= f.radio_button(:speech_problems, :no) %>
+        <%= f.label(:speech_problems_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question memory-problems">
+    <%= f.label(:memory_problems, 'Problems with Memory') %>
+    <div class="response">
+      <div class="option">
+        <%= f.radio_button(:memory_problems, :yes) %>
+        <%= f.label(:memory_problems_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= f.radio_button(:memory_problems, :no) %>
+        <%= f.label(:memory_problems_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question anxiousness">
+    <%= f.label(:anxiousness, 'Anxiousness') %>
+    <div class="response">
+      <div class="option">
+        <%= f.radio_button(:anxiousness, :yes) %>
+        <%= f.label(:anxiousness_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= f.radio_button(:anxiousness, :no) %>
+        <%= f.label(:anxiousness_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question concentration-problems">
+    <%= f.label(:concentration_problems, 'Trouble Concentrating') %>
+    <div class="response">
+      <div class="option">
+        <%= f.radio_button(:concentration_problems, :yes) %>
+        <%= f.label(:concentration_problems_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= f.radio_button(:concentration_problems, :no) %>
+        <%= f.label(:concentration_problems_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="question sleep-problems">
+    <%= f.label(:sleep_problems, 'Trouble Sleeping') %>
+    <div class="response">
+      <div class="option">
+        <%= f.radio_button(:sleep_problems, :yes) %>
+        <%= f.label(:sleep_problems_yes, 'Yes') %>
+      </div>
+      <div class="option">
+        <%= f.radio_button(:sleep_problems, :no) %>
+        <%= f.label(:sleep_problems_no, 'No') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= hidden_field_tag(:step, '', class: :action) %>
+
+    <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
+    <%= link_to("Back", '#', onClick: 'submitForm("back")', class: :back) %>
+    <%= link_to("Complete", '#', onClick: 'submitForm("submit")', class: :next) %>
+  </div>
+
+<% end %>
+
+
+<script>
+  var submitForm = function(action) {
+    patientCare.submitForm("new-health-update", action, {});
+  };
+</script>
