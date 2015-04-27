@@ -35,5 +35,11 @@
       <div class="hospital-logo"><%= image_tag asset_path('baptistHealth.jpg'); %></div>
       <div class="copyright">Copyright &copy; 2015, Roy Strowd</div>
     </div>
+
+    <!-- TODO: Position and style this appropriately. -->
+    <div id="notifications">
+      <div class="notice"><%= flash[:notice] %></div>
+      <div class="alert"><%= flash[:alert] %></div>
+    </div>
   </body>
 </html>

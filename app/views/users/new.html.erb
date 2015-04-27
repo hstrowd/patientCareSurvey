@@ -1,5 +1,5 @@
 <!-- TODO: Figure out how to handle the case when the @user has already been saved. -->
-<%= form_for(@user, html: { id: 'new-user', class: :survey }) do |f| %>
+<%= form_for(@user, html: { id: 'new-user', class: 'survey-step' }) do |f| %>
   <div class="title">Please answer the following:</div>
 
   <div class="question name">
@@ -60,7 +60,7 @@
   </div>
 
   <div class="actions">
-    <%= hidden_field_tag(:step, '', class: :action) %>
+    <%= hidden_field_tag(:next_action, '', class: :action) %>
 
     <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
     <%= link_to("Next", '#', onClick: 'submitForm("submit")', class: :next) %>

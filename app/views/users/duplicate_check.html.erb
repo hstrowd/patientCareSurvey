@@ -19,11 +19,11 @@
           </div>
           <div class="gender attr">
             <div class="label">Gender:</div>
-            <div class="value"><%= user.gender %></div>
+            <div class="value"><%= user.gender.try(:titleize) %></div>
           </div>
           <div class="ethnicity attr">
             <div class="label">Ethnicity:</div>
-            <div class="value"><%= user.ethnicity %></div>
+            <div class="value"><%= user.ethnicity.try(:titleize) %></div>
           </div>
           <div class="last-update attr">
             <div class="label">Last Use:</div>
@@ -36,11 +36,10 @@
 
   <%= form_tag(duplicate_users_path, id: 'duplicate-user-form') do %>
     <%= hidden_field_tag :duplicate_user_id %>
-    <%= hidden_field_tag(:step, '', class: :action) %>
+    <%= hidden_field_tag(:next_action, '', class: :action) %>
 
     <div class="actions">
       <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
-      <%= link_to("Back", '#', onClick: 'submitForm("back")', class: :back) %>
       <%= link_to("No, None are me.", '#', onClick: 'submitForm("submit")', class: :next) %>
     </div>
   <% end %>

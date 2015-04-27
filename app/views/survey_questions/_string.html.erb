@@ -1,0 +1,7 @@
+<div class="question <%= question.name %>">
+  <%= label_tag(question.name, question.question) %>
+  <div class="response">
+    <!-- TODO: Replace the empty string with the current response value. -->
+    <%= text_field_tag(question.name, response.try(:response)) %>
+  </div>
+</div>

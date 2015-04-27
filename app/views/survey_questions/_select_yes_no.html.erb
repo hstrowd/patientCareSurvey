@@ -1,0 +1,10 @@
+<div class="question <%= question.name %>">
+  <%= label_tag(question.name, question.question) %>
+  <div class="response">
+    <!-- Replace nil with the current response value. -->
+    <%= select_tag(question.name, options_for_select([ ['Select one...', nil],
+                                                       ['Yes', true],
+                                                       ['No',  false]
+                                                     ], response.try(:response))) %>
+  </div>
+</div>

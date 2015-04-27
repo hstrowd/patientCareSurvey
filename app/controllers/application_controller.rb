@@ -5,15 +5,28 @@ class ApplicationController < ActionController::Base
 
   before_action :require_survey_response
 
+
+  def redirect_to_step(step)
+    # If there is no next step, complete the survey.
+    if !step
+      redirect_to thank_you_path
+      return
+    end
+
+    step_action = step.custom_action || new_survey_step_response_path(step)
+    redirect_to step_action
+  end
+
+
   def init_survey_response(survey_type)
     survey_response = SurveyResponse.create(survey_type: survey_type)
-    session[:survey] = survey_response.id if survey_response
+    session[:survey_response_id] = survey_response.id if survey_response
     return survey_response
   end
 
   def current_survey_response
-    if !session[:survey].blank?
-      return SurveyResponse.find(session[:survey])
+    if !session[:survey_response_id].blank?
+      return SurveyResponse.find(session[:survey_response_id])
     else
       return nil
     end
@@ -21,27 +34,27 @@ class ApplicationController < ActionController::Base
 
   def new_patient?
     survey_response = current_survey_response
-    return survey_response && (survey_response.survey_type == :new_patient)
+    return survey_response && (survey_response.survey_type.survey_type == 'new_patient')
   end
 
   def returning_patient?
     survey_response = current_survey_response
-    return survey_response && (survey_response.survey_type == :returning_patient)
-  end
-
-  def current_user
-    survey_response = current_survey_response
-    return survey_response && survey_response.user
+    return survey_response && (survey_response.survey_type.survey_type == 'returning_patient')
   end
 
   def record_submission(step, action, params)
     survey_response = current_survey_response
-    return if !survey_response
+    if !survey_response
+      logger.warn("Unable to record submission. No survey response found.\n  Step: #{step.try(:inspect)}\n  Params: #{params.try(:inspect)}")
+      return
+    end
+
+    return if !action
 
     submission_attrs = {
       survey_response: survey_response,
-      submission_step: SubmissionStep[step],
-      submission_action: SubmissionAction[action],
+      step: step,
+      action: action,
       params: params
     }
 
@@ -57,7 +70,29 @@ class ApplicationController < ActionController::Base
     return false;
   end
 
-  def cancel_submission
+  def process_step_response(step, action_key)
+    action = SurveyAction[action_key]
+    logger.warn("Unrecognized survey action: #{action_key}") if !action
+
+    record_submission(step, action, params)
+
+    if (action == SurveyAction[:cancel])
+      cancel_survey_response && return
+    elsif (action == SurveyAction[:back])
+      if step.previous_step
+        redirect_to_step(step.previous_step)
+      else
+        cancel_survey_response
+      end
+      return
+    else
+      yield
+
+      redirect_to_step(step.next_step)
+    end
+  end
+
+  def cancel_survey_response
       reset_session
       redirect_to root_path
   end
@@ -67,6 +102,7 @@ private
   def require_survey_response
     if !current_survey_response
       logger.warn "Request received without survey response -- request URL: #{request.url}, params: #{params.inspect()}"
+      # TODO: Add a flash message here.
       redirect_to root_path
     end
   end

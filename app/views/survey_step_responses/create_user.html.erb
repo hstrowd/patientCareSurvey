@@ -1,0 +1,93 @@
+<!-- TODO: Figure out how to handle the case when the @user has already been saved. -->
+<%= form_tag(survey_step_response_index_path(@step), { id: "#{@step.slug}-form", class: 'survey-step' }) do %>
+  <div class="title">Please answer the following:</div>
+
+  <%= hidden_field_tag(:survey_step_id, @step.id) %>
+
+  <div class="question name">
+    <%= label_tag(:full_name, 'What is your first and last name?', class: :required) %>
+    <div class="response">
+      <%= text_field_tag(:first_name, '', placeholder: 'First Name') %>
+      <%= text_field_tag(:last_name, '', placeholder: 'Last Name') %>
+    </div>
+  </div>
+
+  <div class="question birth-date">
+    <%= label_tag(:birth_date, 'What is your date of birth?', class: :required) %>
+    <div class="response">
+      <%= date_field_tag(:birth_date, nil) %>
+      <!-- TODO: Find a better date field. -->
+    </div>
+  </div>
+
+  <div class="question gender">
+    <%= label_tag(:gender, 'What is your gender?') %>
+    <div class="response">
+      <%= select_tag(:gender, options_for_select([ ['Select one...', nil],
+                                                   ['Male',:male],
+                                                   ['Female',:female],
+                                                   ['Not specified',:other]
+                                                 ], nil)) %>
+    </div>
+    <div class="followup">
+      <%= label_tag(:gender_other, 'If not specified:') %>
+      <div class="response">
+        <%= text_field_tag(:gender_other, '', placeholder: 'Please write in here') %>
+      </div>
+    </div>
+  </div>
+
+  <!-- TODO: Figure out why ethnicity and ethnicity other are not saving. -->
+  <div class="question race">
+    <%= label_tag(:ethnicity, 'What is your race/ethnicity?') %>
+    <div class="response">
+      <%= select_tag(:ethnicity, options_for_select([ ['Select one...', nil],
+                                                      ['American Indian or Alaska Native',:american_indian],
+                                                      ['Asian',:asian],
+                                                      ['Hispanic, Latino, or Spanish Origin',:hispanic],
+                                                      ['Black or African American',:african_americas],
+                                                      ['Native Hawaiian or Other Pacific Islander',:pacific_islander],
+                                                      ['White',:white],
+                                                      ['Other, please specify.',:other]
+                                                    ], nil)) %>
+    </div>
+    <div class="followup">
+      <%= label_tag(:ethnicity_other, 'If other:') %>
+      <div class="response">
+        <%= text_field_tag(:ethnicity_other, '', placeholder: 'Please write in here') %>
+      </div>
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= hidden_field_tag(:next_action, '', class: :action) %>
+
+    <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
+    <%= link_to("Next", '#', onClick: 'submitForm("submit")', class: :next) %>
+  </div>
+
+<% end %>
+
+
+<script>
+  var submitForm = function(action) {
+    var options = {};
+    if (action == 'submit') {
+      options = {
+        validate: [ {
+          selector: 'input[name=first_name]',
+          required: true
+        }, {
+          selector: 'input[name=last_name]',
+          required: true
+        }, {
+          selector: 'input[name=birth_date]',
+          required: true,
+          dataType: 'date'
+        } ]
+      };
+    }
+
+    patientCare.submitForm("create-user-form", action, options);
+  };
+</script>

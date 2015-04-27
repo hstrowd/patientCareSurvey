@@ -1,105 +1,125 @@
 class UsersController < ApplicationController
-  skip_before_action :require_survey_response, only: [:new, :new_lookup]
 
   def new
-    survey_response = current_survey_response || init_survey_response(:new_patient)
-
-    @user = survey_response.user
-    if !@user
-      if !session[:pending_user_attrs].blank?
-        @user = User.new(session[:pending_user_attrs])
-      else
-        @user = User.new
-      end
-    end
+    @user = current_survey_response.user || User.new
   end
 
   def create
-    record_submission(:new_user, params[:step], user_params)
+    step = SurveyStep.find_by_name(:create_user)
+    if !step
+      logger.error("Unable to find create_user step.")
 
-    if (params[:step] == 'cancel')
-      cancel_submission && return
-    elsif (params[:step] == 'back')
-      cancel_submission && return
-    else
+      flash[:alert] = "Configuration error detected."
+      redirect_to root_path
+      return
+    end
+
+    process_step_response(step, params[:next_action]) do
       @user = User.new
       return if !update_user(user_params)
 
       survey_response = current_survey_response
       survey_response.user = @user
       survey_response.save!
-
-      redirect_to new_tumor_update_path
     end
   end
 
   def update
-    record_submission(:change_user, params[:step], user_params)
+    step = SurveyStep.find_by_name(:create_user)
+    if !step
+      logger.error("Unable to find create_user step.")
 
-    if (params[:step] == 'cancel')
-      cancel_submission && return
-    elsif (params[:step] == 'back')
-      cancel_submission && return
-    else
-      @user = User.find(params[:id]) || User.new
+      flash[:alert] = "Configuration error detected."
+      redirect_to root_path
+      return
+    end
+
+    process_step_response(step, params[:next_action]) do
+      @user = User.new
       return if !update_user(user_params)
 
       survey_response = current_survey_response
       survey_response.user = @user
       survey_response.save!
-
-      redirect_to new_tumor_update_path
     end
   end
 
   def new_lookup
-    survey_response = current_survey_response || init_survey_response(:returning_patient)
+    @user = current_survey_response.user || User.new
   end
 
   def lookup
-    record_submission(:lookup_user, params[:step], user_params)
+    step = SurveyStep.find_by_name(:lookup_user)
+    if !step
+      logger.error("Unable to find lookup_user step.")
 
-    if (params[:step] == 'cancel')
-      cancel_submission && return
-    elsif (params[:step] == 'back')
-      cancel_submission && return
-    else
-      redirect_to new_health_update_path
+      flash[:alert] = "Configuration error detected."
+      redirect_to root_path
+      return
+    end
+
+    process_step_response(step, params[:next_action]) do
+      # Note: Using lower here prevents us from using our indexes.
+      users = User.where("lower(first_name) = lower(?) AND lower(last_name) = lower(?) AND birth_date = ?",
+                         user_params[:first_name],
+                         user_params[:last_name],
+                         user_params[:birth_date])
+
+      if users.empty?
+        flash[:notice] = "No matching user found."
+        @user = User.new
+        render :new_lookup
+        return
+      end
+
+      @user = users.first
+      survey_response = current_survey_response
+      survey_response.user = @user
+      survey_response.save!
+
+      if users.size > 1
+        render :duplicate_check
+        return
+      end
     end
   end
 
   def duplicate
-    record_submission(:duplicate_check, params[:step], duplicate_check_params)
-
-    if (params[:step] == 'cancel')
-      cancel_submission && return
-    elsif (params[:step] == 'back')
-      if returning_patient?
-        redirect_to lookup_users_path
-      else
-        redirect_to new_user_path
-      end
+    if new_patient?
+      step_key = :duplicate_user
     else
+      step_key = :multiple_users
+    end
+    step = SurveyStep.find_by_name(step_key)
+    if !step
+      logger.warn("Unable to find #{step_key} step.")
+
+      flash[:alert] = "Configuration error detected."
+      redirect_to root_path
+      return
+    end
+
+    process_step_response(step, params[:next_action]) do
       if !duplicate_check_params[:duplicate_user_id].blank?
         return if !lookup_duplicate(duplicate_check_params[:duplicate_user_id])
       else
-        user_attrs = session[:pending_user_attrs]
-        user_attrs.delete('id')
+        if new_patient?
+          user_attrs = session[:pending_user_attrs]
+          user_attrs.delete('id')
 
-        @user = User.new
-        return if !update_user(user_attrs, check_dup: false)
+          @user = User.new
+          return if !update_user(user_attrs, check_dup: false)
+        else
+          flash[:alert] = "A previous account is required for returning patients."
+          redirect_to lookup_users_path
+          return
+        end
       end
       session[:pending_user_attrs] = nil
 
       survey_response = current_survey_response
       survey_response.user = @user
       survey_response.save!
-
-      if returning_patient?
-        redirect_to new_health_update_path
-      else
-        redirect_to new_tumor_update_path
-      end
     end
   end
 
@@ -172,7 +192,7 @@ private
       return false
     end
 
-    logger.debug "Succesfully created new User."
+    logger.debug("Succesfully created new User.")
     return true
   end
 

@@ -1,0 +1,46 @@
+<div class="question rating <%= question.name %>">
+  <%= label_tag(question.name, question.question) %>
+
+  <!-- Replace nil with the current response value. -->
+  <%= hidden_field_tag(question.name, response.try(:response)) %>
+  <div class="response drop-down">
+    <%= select_tag("#{question.name}_select",
+                   options_for_select([ ['Select one...', nil],
+                                        ['Strongly Agree',:strong_agree],
+                                        ['Agree',:agree],
+                                        ['Neutral',:neutral],
+                                        ['Disagree',:disagree],
+                                        ['Strongly Disagree',:strong_disagree] ])) %>
+  </div>
+  <div class="response radio">
+    <div class="option">
+      <%= radio_button_tag("#{question.name}_radio", :strong_agree) %>
+      <%= label_tag("#{question.name}_radio_strong_agree", 'Strongly Agree') %>
+    </div>
+    <div class="option">
+      <%= radio_button_tag("#{question.name}_radio", :agree) %>
+      <%= label_tag("#{question.name}_radio_agree", 'Agree') %>
+    </div>
+    <div class="option">
+      <%= radio_button_tag("#{question.name}_radio", :neutral) %>
+      <%= label_tag("#{question.name}_radio_neutral", 'Neutral') %>
+    </div>
+    <div class="option">
+      <%= radio_button_tag("#{question.name}_radio", :disagree) %>
+      <%= label_tag("#{question.name}_radio_disagree", 'Disagree') %>
+    </div>
+    <div class="option">
+      <%= radio_button_tag("#{question.name}_radio", :strong_disagree) %>
+      <%= label_tag("#{question.name}_radio_strong_disagree", 'Strongly Disagree') %>
+    </div>
+  </div>
+
+  <script>
+    $(document).ready(function() {
+    patientCare.reflectField('input#<%= question.name %>',
+    'select#<%= question.name %>_select');
+    patientCare.reflectRadio('input#<%= question.name %>',
+    '<%= question.name %>_radio');
+    });
+  </script>
+</div>

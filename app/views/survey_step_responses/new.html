@@ -1,0 +1,27 @@
+<%= form_tag(survey_step_response_index_path(@step), { id: "#{@step.slug}-form", class: 'survey-step' }) do %>
+  <div class="title"><%= @step.intro %></div>
+
+  <div class="questions">
+    <% @step.questions.each do |question| %>
+      <%= render(partial: 'survey_questions/question',
+                 locals: {
+                   question: question,
+                   response: lookup_question_response(@response, question)
+                 }) %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= hidden_field_tag(:next_action, '', class: :action) %>
+
+    <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
+    <%= link_to("Back", '#', onClick: 'submitForm("back")', class: :back) %>
+    <%= link_to("Next", '#', onClick: 'submitForm("submit")', class: :next) %>
+  </div>
+<% end %>
+
+<script>
+  var submitForm = function(action) {
+    patientCare.submitForm("<%= "#{@step.slug}-form" %>", action, {});
+  };
+</script>

@@ -5,16 +5,16 @@ PatientCareApp::Application.routes.draw do
   # You can have the root of your site routed with "root"
   root 'home#index'
 
+  resources :survey_types
+  resources :survey_steps do
+    resources :survey_step_responses, as: 'response'
+  end
+
   resources :users do
     post "duplicate" => "users#duplicate", on: :collection
     get "lookup" => "users#new_lookup", on: :collection
     post "lookup" => "users#lookup", on: :collection
   end
-
-  resources :tumor_updates
-  resources :work_updates
-  resources :life_updates
-  resources :health_updates
 
   get 'thank_you' => 'home#thank_you'
 

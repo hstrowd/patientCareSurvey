@@ -88,12 +88,9 @@ window.patientCare = {
     },
     // Note: The source is expected to be updated by the user and the base
     //   will be updated to reflect this.
-    reflectField: function(formID, baseSelector, sourceSelector) {
-        var $form = $('#' + formID);
-        if ($form.legnth == 0) { return; }
-
-        var $base = $form.find(baseSelector);
-        var $source = $form.find(sourceSelector);
+    reflectField: function(baseSelector, sourceSelector) {
+        var $base = $(baseSelector);
+        var $source = $(sourceSelector);
         if ($base.legnth || $source.legnth) {
             return;
         }
@@ -110,12 +107,9 @@ window.patientCare = {
     },
     // Note: The radio is expected to be updated by the user and the base field
     //   will be updated to reflect this.
-    reflectRadio: function(formID, baseFieldSelector, radioName) {
-        var $form = $('#' + formID);
-        if ($form.legnth == 0) { return; }
-
-        var $base = $form.find(baseFieldSelector);
-        var $radio = $form.find('input:radio[name=' + radioName + ']');
+    reflectRadio: function(baseFieldSelector, radioName) {
+        var $base = $(baseFieldSelector);
+        var $radio = $('input:radio[name=' + radioName + ']');
         if ($base.legnth == 0 || $radio.legnth == 0) {
             return;
         }

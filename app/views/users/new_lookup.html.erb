@@ -1,0 +1,55 @@
+<!-- TODO: Figure out how to handle the case when the @user has already been saved. -->
+<%= form_for(@user, 
+             url: lookup_users_path,
+             method: 'POST',
+             html: { id: 'lookup-user', class: 'survey-step' }) do |f| %>
+  <div class="title">Please answer the following:</div>
+
+  <div class="question name">
+    <%= f.label(:full_name, 'What is your first and last name?', class: :required) %>
+    <div class="response">
+      <%= f.text_field(:first_name, placeholder: 'First Name') %>
+      <%= f.text_field(:last_name, placeholder: 'Last Name') %>
+    </div>
+  </div>
+
+  <div class="question birth-date">
+    <%= f.label(:birth_date, 'What is your date of birth?', class: :required) %>
+    <div class="response">
+      <%= f.date_field(:birth_date) %>
+      <!-- TODO: Find a better date field. -->
+    </div>
+  </div>
+
+  <div class="actions">
+    <%= hidden_field_tag(:next_action, '', class: :action) %>
+
+    <%= link_to("Cancel", '#', onClick: 'submitForm("cancel")', class: :cancel) %>
+    <%= link_to("Next", '#', onClick: 'submitForm("submit")', class: :next) %>
+  </div>
+
+<% end %>
+
+
+<script>
+  var submitForm = function(action) {
+    var options = {};
+    if (action == 'submit') {
+      options = {
+        validate: [ {
+          selector: 'input[name=first_name]',
+          required: true
+        }, {
+          selector: 'input[name=last_name]',
+          required: true
+        }, {
+          selector: 'input[name=birth_date]',
+          required: true,
+          dataType: 'date'
+        } ]
+      };
+    }
+
+    patientCare.submitForm("lookup-user", action, options);
+  };
+</script>
