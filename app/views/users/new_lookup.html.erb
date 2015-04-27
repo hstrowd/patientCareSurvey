@@ -37,13 +37,13 @@
     if (action == 'submit') {
       options = {
         validate: [ {
-          selector: 'input[name=first_name]',
+          selector: 'input#user_first_name',
           required: true
         }, {
-          selector: 'input[name=last_name]',
+          selector: 'input#userlast_name',
           required: true
         }, {
-          selector: 'input[name=birth_date]',
+          selector: 'input#user_birth_date',
           required: true,
           dataType: 'date'
         } ]

@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     if !step
       logger.error("Unable to find create_user step.")
 
-      flash[:alert] = "Configuration error detected."
+      flash.now[:alert] = "Configuration error detected."
       redirect_to root_path
       return
     end
@@ -29,7 +29,7 @@ class UsersController < ApplicationController
     if !step
       logger.error("Unable to find create_user step.")
 
-      flash[:alert] = "Configuration error detected."
+      flash.now[:alert] = "Configuration error detected."
       redirect_to root_path
       return
     end
@@ -53,12 +53,21 @@ class UsersController < ApplicationController
     if !step
       logger.error("Unable to find lookup_user step.")
 
-      flash[:alert] = "Configuration error detected."
+      flash.now[:alert] = "Configuration error detected."
       redirect_to root_path
       return
     end
 
     process_step_response(step, params[:next_action]) do
+      if !user_params[:first_name] ||
+          !user_params[:last_name] ||
+          !user_params[:birth_date]
+        flash.now[:alert] = "Missing required fields."
+        @user = User.new(user_params)
+        render :new_lookup
+        return
+      end
+
       # Note: Using lower here prevents us from using our indexes.
       users = User.where("lower(first_name) = lower(?) AND lower(last_name) = lower(?) AND birth_date = ?",
                          user_params[:first_name],
@@ -66,8 +75,8 @@ class UsersController < ApplicationController
                          user_params[:birth_date])
 
       if users.empty?
-        flash[:notice] = "No matching user found."
-        @user = User.new
+        flash.now[:notice] = "No matching user found."
+        @user = User.new(user_params)
         render :new_lookup
         return
       end
@@ -94,7 +103,7 @@ class UsersController < ApplicationController
     if !step
       logger.warn("Unable to find #{step_key} step.")
 
-      flash[:alert] = "Configuration error detected."
+      flash.now[:alert] = "Configuration error detected."
       redirect_to root_path
       return
     end
@@ -110,7 +119,7 @@ class UsersController < ApplicationController
           @user = User.new
           return if !update_user(user_attrs, check_dup: false)
         else
-          flash[:alert] = "A previous account is required for returning patients."
+          flash.now[:alert] = "A previous account is required for returning patients."
           redirect_to lookup_users_path
           return
         end
