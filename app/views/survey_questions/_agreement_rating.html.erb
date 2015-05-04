@@ -1,7 +1,6 @@
 <div class="question rating <%= question.name %>">
   <%= label_tag(question.name, question.question) %>
 
-  <!-- Replace nil with the current response value. -->
   <%= hidden_field_tag(question.name, response.try(:response)) %>
   <div class="response drop-down">
     <%= select_tag("#{question.name}_select",
