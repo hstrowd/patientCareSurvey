@@ -29,6 +29,8 @@ agreementRatingType = SurveyQuestionType.create!(
   question_view:  'survey_questions/agreement_rating'
   );
 # TODO: Add a textarea question type.
+# TODO: Add an employment type question type.
+# TODO: Add an education level question type.
 
 
 
