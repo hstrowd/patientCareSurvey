@@ -1,0 +1,494 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the top of the
+ * compiled file, but it's generally better to create a new file per style scope.
+ *
+
+
+ *
+
+ *
+ */
+
+
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    
+    font-family: Candara, Calibri, Segoe, "Segoe UI", Optima, Arial, sans-serif;
+}
+
+
+.gradient {
+    height: 5%;
+    width: 100%;
+}
+.gradient img {
+    height: 100%;
+    width: 100%;
+    float: left;
+}
+
+.centerer {
+    display: inline-block;
+    height: 100%;
+    vertical-align: middle;
+}
+
+
+
+/**
+ *  Header
+ */
+
+#header {
+    display: inline-block;
+    width: 100%;
+    height: 10%;
+    background-color: #FFFFFF;
+    text-align: center;
+}
+#header .title-bar {
+    width: 90%;
+    max-width: 60em;
+    height: 100%;
+    margin: 0 auto;
+
+    text-align: center;
+}
+
+#header .provider-logo {
+    display: inline-block;
+
+    height: 100%;
+    width: 40%;
+    text-align: left;
+    vertical-align: middle;
+}
+#header .provider-logo img {
+    max-height: 100%;
+    max-width: 100%;
+}
+
+#header .app-title {
+    display: inline-block;
+
+    width: 55%;
+    text-align: right;
+    vertical-align: middle;
+
+    font-size: 1.5em;
+}
+#header .app-title a {
+    color: #000000;
+    text-decoration: none;
+}
+
+
+/**
+ *  Body
+ */
+
+#page-body {
+    height: 75%;
+    overflow-y: scroll;
+    background-color: #F5F5F5;
+}
+
+#page-body .flash {
+    width: 90%;
+    max-width: 45em;
+    margin: 0 auto;
+    text-align: center;
+}
+#page-body .flash .alert {
+    margin: .2em;
+    padding: .2em;
+
+    background-color: #F1A7A7;
+    border: 1px solid #FF0000;
+    border-radius: .5em;
+}
+#page-body .flash .notice {
+    margin: .2em;
+    padding: .2em;
+
+    background-color: #F1EFA7;
+    border: 1px solid #C4B52D;
+    border-radius: .5em;
+}
+
+#page-body .title {
+    margin: 1% 5%;
+    font-size: 1.2em;
+}
+
+#page-body .actions {
+    text-align: center;
+}
+#page-body .actions a {
+    /* Clear webkit styling to ensure proper rendering on iOS devices. */ 
+    -webkit-appearance:none;  
+
+    display: inline-block;
+    width: 10%;
+    min-width: 6em;
+
+    margin: 1%;
+    padding: 2%;
+    
+    border: .1em solid #888888;
+    border-radius: .5em;
+
+    color: #444444;
+    font-size: 1em;
+    text-decoration: none;
+}
+#page-body .actions a:hover {
+    border: .1em solid #444444;
+    color: #000000;
+}
+#page-body .actions a.next {
+    background-color: #C7FFC2;
+}
+#page-body .actions a.next:hover {
+    background-color: #A9FFA2;
+}
+#page-body .actions a.back {
+    background-color: #DDDDDD;
+}
+#page-body .actions a.back:hover {
+    background-color: #CCCCCC;
+}
+#page-body .actions a.cancel {
+    background-color: #FFAFAF;
+}
+#page-body .actions a.cancel:hover {
+    background-color: #FD8F8F;
+}
+
+
+/**
+ *  Survey Step Forms
+ */
+
+#page-body form.survey-step {
+    width: 95%;
+    max-width: 50em;
+    margin: 0 auto;
+}
+
+#page-body form.survey-step .question {
+    margin: 2% 0;
+}
+
+#page-body form.survey-step .question .field_with_errors {
+    display: inline-block;
+}
+
+#page-body form.survey-step .question label {
+    display: inline-block;
+    width: 40%;
+    min-width: 20em;
+    vertical-align: middle;
+}
+#page-body form.survey-step .question label.required::after {
+    content: "*";
+    display: inline-block;
+    
+    margin: 0 0.5em;
+    vertical-align: top;
+
+    font-size: 0.8em;
+    color: red;
+}
+
+#page-body form.survey-step .question .response {
+    display: inline-block;
+    width: 40%;
+    min-width: 20em;
+    margin: 0 3%;
+    vertical-align: middle;
+}
+#page-body form.survey-step .question .response .field_with_errors {
+    display: inline-block;
+}
+#page-body form.survey-step .rating label {
+    width: 100%;
+}
+#page-body form.survey-step .question .response .field_with_errors input,
+#page-body form.survey-step .question .response input.invalid {
+    border: 2px inset #FF0000;
+}
+#page-body form.survey-step .rating .response.radio {
+    display: none;
+}
+#page-body form.survey-step .rating .response.drop-down {
+    width: 90%;
+    margin: 0 auto;
+    text-align: center;
+}
+#page-body form.survey-step .question .response .option {
+    margin: 0 2%;
+    text-align: center;
+}
+#page-body form.survey-step .question .response .option input {
+    display: inline-block;
+}
+#page-body form.survey-step .question .response .option label {
+    display: inline-block;
+    width: initial;
+    min-width: 0;
+}
+
+#page-body form.survey-step .actions {
+    width: 100%;
+    margin: 2% auto;
+}
+
+@media screen and (min-width: 575px)  {
+    /* Replace drop-down select field with radio buttons. */
+    #page-body form.survey-step .rating .response.drop-down {
+        display: none;
+    }
+    #page-body form.survey-step .rating .response.radio,
+    #page-body form.survey-step .rating .response.check {
+        display: block;
+        width: 94%;
+        text-align: center;
+    }
+    #page-body form.survey-step .question .response.check .option label,
+    #page-body form.survey-step .question .response.radio .option label {
+        display: block;
+    }
+    #page-body form.survey-step .question .response .option {
+        display: inline-block;
+    }
+}
+@media screen and (min-width: 800px)  {
+    /* Move the label next to the radio buttons. */
+    #page-body form.survey-step .question .response.check .option label,
+    #page-body form.survey-step .question .response.radio .option label {
+        display: inline-block;
+    }
+}
+
+
+
+
+/**
+ *  Footer
+ */
+
+#footer {
+    height: 10%;
+    background-color: #FFFFFF;
+}
+
+#footer .gradient {
+    height: 20%;
+}
+
+#footer .hospital-logo {
+    height: 70%;
+    margin: auto;
+    padding: .2em;
+    text-align: center;
+}
+#footer .hospital-logo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+#footer .copyright {
+    width: 30em;
+    margin: auto;
+    
+    text-align: center;
+    font-family: tahoma,helvetica,sans-serif;
+    font-size: .6em;
+    color: #777777;
+}
+/**
+ * Place all styles related to the Home views here.
+ */
+
+
+/*  ---  Home Page  ---  */
+
+#home {
+    width: 80%;
+    height: 100%;
+    margin: 2% auto;
+
+    text-align: center;
+}
+
+#home .btn {
+    display: inline-block;
+
+    width: 30%;
+    min-width: 5em;
+    max-width: 8em;
+    height: 20%;
+
+    margin: 3%;
+    padding: 3%;
+
+    border: .1em solid #666666;
+    border-radius: .5em;
+
+    color: #555555;
+    font-size: 2em;
+    text-align: center;
+}
+#home .btn:hover {
+    color: #000000;
+    border: .1em solid #333333;
+}
+#home .btn.new {
+    color: #DDDDDD;
+    background-color: #A88142;
+}
+#home .btn.new:hover {
+    color: #FFFFFF;
+    background-color: #97763E;
+}
+#home .btn.returning {
+    color: #CCCCCC;
+    background-color: #222222;
+}
+#home .btn.returning:hover {
+    color: #FFFFFF;
+    background-color: #000000;
+}
+
+#home .btn .label {
+    display: inline-block;
+
+    width: 90%;
+    
+    vertical-align: middle;
+}
+
+
+
+/*  ---  Thank You Page  ---  */
+
+#thank-you {
+    width: 40%;
+    height: 7em;
+
+    margin: 2em auto;
+    text-align: center;
+
+    background-color: #A9FFAD;
+    border: .2em solid #888888;
+    border-radius: .7em;
+
+    font-size: 1.2em;
+}
+#thank-you .msg {
+    display: inline-block;
+    max-width: 95%;
+    vertical-align: middle;
+}
+#thank-you .msg img {
+    max-width: 100%;
+}
+/**
+ * Place all styles related to the User views here.
+ */
+
+
+/*  --- New Page ---  */
+
+
+form#new-user .question.gender .followup label,
+form#new-user .question.race .followup label {
+    width: 27%;
+    min-width: 18.5em;
+    margin-left: 3%;
+}
+form#new-user .question.gender .followup .response input,
+form#new-user .question.race .response .followup input {
+    width: 50%;
+}
+
+
+
+/*  --- Duplicate Check Page ---  */
+
+#duplicate-user-check {
+    width: 95%;
+    max-width: 50em;
+    margin: 0 auto;
+}
+
+#duplicate-user-check .users {
+    text-align: center;
+}
+#duplicate-user-check .users .user {
+    display: inline-block;
+
+    width: 100%;
+    max-width: 23em;
+    min-width: 18em; 
+
+    margin: 0.5em;
+    
+    text-align: center;
+
+    background-color: #CBAB78;
+    border: 1px solid #666666;
+    border-radius: 0.5em;
+}
+#duplicate-user-check .users .user .selector {
+    display: inline-block;
+
+    width: 6%;
+    margin: 0;
+    padding: 2%;
+
+    text-align: center;
+    vertical-align: middle;
+}
+#duplicate-user-check .users .user .user-details {
+    display: inline-block;
+
+    width: 78%;
+    padding: 5%;
+
+    border-left: 1px dotted #222222;
+
+    text-align: left;
+    vertical-align: middle;
+}
+#duplicate-user-check .users .user .user-details .full-name {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0.1em 0;
+}
+#duplicate-user-check .users .user .user-details .attr .label {
+    display: inline-block;
+    min-width: 5em;
+    font-style: italic;
+}
+#duplicate-user-check .users .user .user-details .attr .value {
+    display: inline-block;
+}
+
+#duplicate-user-check form .actions a {
+    width: 20%;
+}
