@@ -29,7 +29,7 @@ gem 'jquery-rails'
 gem 'turbolinks'
 
 # Adds lookup table support.
-gem 'lookup_by', :path => '/Users/hstrowd/Documents/personal/repos/lookup_by'
+gem 'lookup_by'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
